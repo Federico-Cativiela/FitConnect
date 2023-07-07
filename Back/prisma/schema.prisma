@@ -9,6 +9,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
  model User {
   idUser Int @id @default(autoincrement())
   name String 
@@ -17,29 +18,66 @@ datasource db {
   password String 
   entry_date DateTime @default(now())
   expire_date DateTime @default(now())
-  rol String 
+  rol Boolean
   idMembership Int @default(autoincrement())
   userStatus String
-  // category Category @relation(fields: [categoryId], references: [id])
-  // categoryId Int
-  // stock Int @default(0)
+
+
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   Int
+
+
 }
-// model User {
-//   idUser Int @id @default(autoincrement())
-//   name String 
-//   surname String
-//   email String @unique
-//   password String 
-//   entry_date DateTime @default(now())
-//   expire_date DateTime @default(now())
-//   rol String 
-//   idMembership Int @default(autoincrement())
-//   userStatus String
-//   // category Category @relation(fields: [categoryId], references: [id])
-//   // categoryId Int
-//   // stock Int @default(0)
+model Activity {
+  idAct Int @id @default(autoincrement())
+  name String 
+  surname String 
+  schedule String
+  type_activity String
+  rating String
+  }
+  model Membership {
+  idMembership Int @id @default(autoincrement())
+  levelMembership String 
+  price Float
+  duration Int
+  user User[]
+
+  }
+  model Paystore {
+  idPayment Int @id @default(autoincrement())
+  idMembership Int 
+  priceTotal Float
+  status_payment  String
+  idUser Int
+  }
+
+//   model User {
+//   id        Int    @id @default(autoincrement())
+//   name      String
+//   email     String  @unique
+//   posts     Post[]
 // }
 
+// model Post {
+//   id         Int       @id @default(autoincrement())
+//   title      String
+//   content    String?
+//   published  Boolean   @default(false)
+//   createdAt  DateTime  @default(now())
+
+//   author     User      @relation(fields: [authorId], references: [id])
+//   authorId   Int
+// }
+
+
+	
+
+
+  // // category Category @relation(fields: [categoryId], references: [id])
+  // // categoryId Int
+  // // stock Int @default(0)
+	
 
  
 
