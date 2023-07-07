@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
- model User {
+model User {
   idUser Int @id @default(autoincrement())
   name String 
   surname String
@@ -20,64 +20,90 @@ datasource db {
   expire_date DateTime @default(now())
   rol Boolean
   idMembership Int @default(autoincrement())
-  userStatus String
+  userStatus Boolean
 
+  membership  Membership  @relation(fields: [membershipId], references: [idMembership])
+  membershipId   Int
 
-  author     User      @relation(fields: [authorId], references: [id])
-  authorId   Int
-
-
+  paystores Paystore[]
+  extraActivities UserOnExtraActivity[]
 }
+
 model Activity {
   idAct Int @id @default(autoincrement())
   name String 
-  surname String 
   schedule String
   type_activity String
   rating String
-  }
-  model Membership {
+
+  memberships MembershipOnActivity[]
+}
+
+model Membership {
   idMembership Int @id @default(autoincrement())
   levelMembership String 
   price Float
   duration Int
   user User[]
+  paystore Paystore[]
 
-  }
-  model Paystore {
+  activities MembershipOnActivity[]
+}
+  
+model Paystore {
   idPayment Int @id @default(autoincrement())
   idMembership Int 
   priceTotal Float
   status_payment  String
   idUser Int
-  }
+  
+  extraActivities PaystoreOnExtraActivity[]
 
-//   model User {
-//   id        Int    @id @default(autoincrement())
-//   name      String
-//   email     String  @unique
-//   posts     Post[]
-// }
+  user  User  @relation(fields: [userId], references: [idUser])
+  userId   Int
+  
+  membership  Membership  @relation(fields: [membershipId], references: [idMembership])
+  membershipId   Int
+}
 
-// model Post {
-//   id         Int       @id @default(autoincrement())
-//   title      String
-//   content    String?
-//   published  Boolean   @default(false)
-//   createdAt  DateTime  @default(now())
+model ExtraActivity {
+  idExtraAct Int @id @default(autoincrement())
+  name String 
+  schedule String
+  type_activity String
+  rating String
+  price Float
+  
+  paystores PaystoreOnExtraActivity[]
+  user UserOnExtraActivity[]
+}
 
-//   author     User      @relation(fields: [authorId], references: [id])
-//   authorId   Int
-// }
+model MembershipOnActivity {
+  membership Membership @relation(fields: [membershipId], references: [idMembership])
+  membershipId Int
+  
+  activity Activity @relation(fields: [activityId], references: [idAct])
+  activityId Int
 
+  @@id([membershipId, activityId])
+}
 
-	
+model PaystoreOnExtraActivity {
+  paystore Paystore @relation(fields: [paymentId], references: [idPayment])
+  paymentId Int
+  
+  extraActivity ExtraActivity @relation(fields: [extraActivityId], references: [idExtraAct])
+  extraActivityId Int
 
+  @@id([paymentId, extraActivityId])
+}
 
-  // // category Category @relation(fields: [categoryId], references: [id])
-  // // categoryId Int
-  // // stock Int @default(0)
-	
+model UserOnExtraActivity {
+  user User @relation(fields: [userId], references: [idUser])
+  userId Int
+  
+  extraActivity ExtraActivity @relation(fields: [extraActivityId], references: [idExtraAct])
+  extraActivityId Int
 
- 
-
+  @@id([userId, extraActivityId])
+}
