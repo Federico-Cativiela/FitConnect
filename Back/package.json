@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "babel": "^6.23.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "mercadopago": "^1.5.16",

@@ -9,7 +9,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
- model User {
+
+model User {
   idUser Int @id @default(autoincrement())
   name String 
   surname String
@@ -17,29 +18,92 @@ datasource db {
   password String 
   entry_date DateTime @default(now())
   expire_date DateTime @default(now())
-  rol String 
+  rol Boolean
   idMembership Int @default(autoincrement())
-  userStatus String
-  // category Category @relation(fields: [categoryId], references: [id])
-  // categoryId Int
-  // stock Int @default(0)
+  userStatus Boolean
+
+  membership  Membership  @relation(fields: [membershipId], references: [idMembership])
+  membershipId   Int
+
+  paystores Paystore[]
+  extraActivities UserOnExtraActivity[]
 }
-// model User {
-//   idUser Int @id @default(autoincrement())
-//   name String 
-//   surname String
-//   email String @unique
-//   password String 
-//   entry_date DateTime @default(now())
-//   expire_date DateTime @default(now())
-//   rol String 
-//   idMembership Int @default(autoincrement())
-//   userStatus String
-//   // category Category @relation(fields: [categoryId], references: [id])
-//   // categoryId Int
-//   // stock Int @default(0)
-// }
 
+model Activity {
+  idAct Int @id @default(autoincrement())
+  name String 
+  schedule String
+  type_activity String
+  rating String
 
- 
+  memberships MembershipOnActivity[]
+}
 
+model Membership {
+  idMembership Int @id @default(autoincrement())
+  levelMembership String 
+  price Float
+  duration Int
+  user User[]
+  paystore Paystore[]
+
+  activities MembershipOnActivity[]
+}
+  
+model Paystore {
+  idPayment Int @id @default(autoincrement())
+  idMembership Int 
+  priceTotal Float
+  status_payment  String
+  idUser Int
+  
+  extraActivities PaystoreOnExtraActivity[]
+
+  user  User  @relation(fields: [userId], references: [idUser])
+  userId   Int
+  
+  membership  Membership  @relation(fields: [membershipId], references: [idMembership])
+  membershipId   Int
+}
+
+model ExtraActivity {
+  idExtraAct Int @id @default(autoincrement())
+  name String 
+  schedule String
+  type_activity String
+  rating String
+  price Float
+  
+  paystores PaystoreOnExtraActivity[]
+  user UserOnExtraActivity[]
+}
+
+model MembershipOnActivity {
+  membership Membership @relation(fields: [membershipId], references: [idMembership])
+  membershipId Int
+  
+  activity Activity @relation(fields: [activityId], references: [idAct])
+  activityId Int
+
+  @@id([membershipId, activityId])
+}
+
+model PaystoreOnExtraActivity {
+  paystore Paystore @relation(fields: [paymentId], references: [idPayment])
+  paymentId Int
+  
+  extraActivity ExtraActivity @relation(fields: [extraActivityId], references: [idExtraAct])
+  extraActivityId Int
+
+  @@id([paymentId, extraActivityId])
+}
+
+model UserOnExtraActivity {
+  user User @relation(fields: [userId], references: [idUser])
+  userId Int
+  
+  extraActivity ExtraActivity @relation(fields: [extraActivityId], references: [idExtraAct])
+  extraActivityId Int
+
+  @@id([userId, extraActivityId])
+}
