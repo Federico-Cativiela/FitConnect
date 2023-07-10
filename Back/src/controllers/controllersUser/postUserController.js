@@ -1,8 +1,8 @@
 const {prisma} = require('../../db.js')
 
-const postActivityController = async (name, surname, email, password, rol, userStatus, membershipId) => {
+const postUserController = async (name, surname, email, password, rol, userStatus, membershipId) => {
     
-    const newActivity = await prisma.activity.create({
+    const newUser = await prisma.user.create({
         data:{
             name: name,
             surname: surname,
@@ -14,9 +14,9 @@ const postActivityController = async (name, surname, email, password, rol, userS
         }
     })
 
-    return newActivity;
+    return newUser;
 };
 
 module.exports = {
-    postActivityController
+    postUserController
 }
