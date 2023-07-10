@@ -1,19 +1,22 @@
-const {prisma} = require ('../../db.js');
+const { prisma } = require('../../db.js');
 
 const postExtra = async (req, res) => {
   try {
+    const { name, schedule, type_activity, rating, price } = req.body;
+
     const newExtra = await prisma.extraActivity.create({
       data: {
-        name: req.body,
-        schedule: req.body,
-        type_activity: req.body,
-        rating: req.body,
-        price: req.body
+        name: name,
+        schedule: schedule,
+        type_activity: type_activity,
+        rating: rating,
+        price: price
       }
-    })
-    res.json(newExtra)
+    });
+
+    res.json(newExtra);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
