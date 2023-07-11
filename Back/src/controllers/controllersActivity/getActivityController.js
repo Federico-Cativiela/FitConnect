@@ -2,7 +2,7 @@ const {prisma} = require ('../../db.js');
 
 
 const getActivityController = async () => {
-    const activities = await prisma.extraActivity.findMany()
+    const activities = await prisma.activity.findMany()
     return  activities;
 };
 

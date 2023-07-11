@@ -1,4 +1,4 @@
-const { getActivityController } = require("../../controllers/controllersActivity/deleteActivityController");
+const { getActivityController } = require("../../controllers/controllersActivity/getActivityController");
 
 const getActivity = async (req, res) => {
     try {
