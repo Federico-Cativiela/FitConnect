@@ -5,7 +5,7 @@ const putMembership = async (req, res) => {
     const put = await prisma.membership.update(
       {
         where: {
-          idMemb: parseInt(req.params.idMemb)
+          idMembership: parseInt(req.params.idMembership)
         },
         data: req.body
       })
