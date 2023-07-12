@@ -3,6 +3,7 @@ const { postActivity } = require('../handlers/handlersActivity/postActivityHandl
 const { getActivity } = require('../handlers/handlersActivity/getActivityHandler');
 const { putActivitie } = require('../controllers/controllersActivity/putActivityController');
 const { deleteActivitie } = require('../controllers/controllersActivity/deleteActivityController');
+
 const activitieRouter = Router();
 
 activitieRouter.get("/", getActivity)
