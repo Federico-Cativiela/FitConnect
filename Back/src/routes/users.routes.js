@@ -6,6 +6,6 @@ const { postUser } = require('../handlers/handlersUser/postUserHandler');
 
 userRouter.get("/",  getUsers)
 userRouter.get("/user/:id", getUserId)
-userRouter.post("/",postUser)
+userRouter.post("/", postUser)
 
 module.exports = userRouter;
