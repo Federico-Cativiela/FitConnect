@@ -5,7 +5,7 @@ const deleteMembership = async (req, res) => {
     const deleted = await prisma.membership.delete(
       {
         where: {
-          idMemb: parseInt(req.params.idMemb)
+          idMembership: parseInt(req.params.idMembership)
         }
       }
     )
