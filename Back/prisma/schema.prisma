@@ -33,7 +33,7 @@ model Activity {
   name String 
   schedule String
   type_activity String
-  rating String
+  rating String 
 
   memberships MembershipOnActivity[]
 }
