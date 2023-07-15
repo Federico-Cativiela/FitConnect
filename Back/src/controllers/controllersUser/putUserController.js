@@ -4,7 +4,7 @@ const putUserController = async (id, data) => {
     
     const put = await prisma.user.update({
         where: {
-          idUser: Number(id)
+          id: id
         },
         data: data
       })
