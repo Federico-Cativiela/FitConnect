@@ -1,8 +1,12 @@
 const {prisma} = require ('../../db.js');
 
 
-const getMembershipController = async () => {
-    const memberships = await prisma.membership.findMany()
+const getMembershipController = async (filter) => {
+    const memberships = await prisma.membership.findMany({
+        where: {
+            duration: Number(filter)
+        },  
+    })
     return  memberships;
 };
 
