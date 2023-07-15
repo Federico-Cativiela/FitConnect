@@ -19,7 +19,6 @@ model User {
   entry_date DateTime @default(now())
   expire_date DateTime @default(now())
   rol Boolean
-  idMembership Int @default(autoincrement())
   userStatus Boolean
 
   membership  Membership  @relation(fields: [membershipId], references: [idMembership])
@@ -35,7 +34,7 @@ model Activity {
   name String 
   schedule String
   type_activity String
-  rating String
+  rating String 
 
   memberships MembershipOnActivity[]
 }
