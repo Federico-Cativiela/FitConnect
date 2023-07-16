@@ -4,7 +4,7 @@ const deleteUserController = async (id) => {
     
     const deleted = await prisma.user.delete({
         where: {
-          idUser: Number(id)
+          id: id
         },
       })
       

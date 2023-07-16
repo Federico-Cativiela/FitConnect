@@ -4,7 +4,7 @@ const getUserId = async (req, res) => {
   try {
     const userFound = await prisma.user.findFirst({
     where: {
-      idUser: parseInt(req.params.id)
+      id: parseInt(req.params.id)
     }
   })
 
