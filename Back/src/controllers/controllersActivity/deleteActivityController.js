@@ -19,4 +19,3 @@ const deleteActivitie = async (req, res) => {
 module.exports = {
   deleteActivitie
 };
-//hola

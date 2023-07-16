@@ -4,7 +4,9 @@ const getUserId = async (req, res) => {
   const {id} = req.params
   try {
     let userFound;
-    if (isNaN(id)) {        
+    if (isNaN(id)) {     
+      console.log("estoy en el if",id);
+   
       userFound = await prisma.user.findFirst({
         where: {
           uid: id

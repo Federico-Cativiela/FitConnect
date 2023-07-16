@@ -8,6 +8,7 @@ const putUser = async (req, res) => {
         const put = await putUserController(id, data)
         res.status(200).json(put);    
     } catch (error) {
+        console.log(error);
         res.status(400).json({ error: error.message });
     }
 };

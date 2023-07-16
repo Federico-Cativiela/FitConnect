@@ -1,16 +1,16 @@
 const { prisma } = require("../../db");
 
 const putUserController = async (id, data) => {
-  let userFound;
+  let put;
     if (isNaN(id)) {
-      const put = await prisma.user.update({
+      put = await prisma.user.update({
         where: {
-          uid: id,
+          email: data.email,
         },
         data: data,
       });
     }else{
-      const put = await prisma.user.update({
+      put = await prisma.user.update({
         where: {
           id: Number(id)
         },
