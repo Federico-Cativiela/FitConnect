@@ -1,8 +1,8 @@
 const {prisma} = require('../../db.js')
 
 const postUserController = async (uid, name, surname, email, password, rol, userStatus, membershipId) => {
+    !password && (password = "aaaaa"); 
     console.log(uid, name, surname, email, password, rol, userStatus, membershipId);
-    
     const newUser = await prisma.user.create({
         data:{
             uid: uid,
