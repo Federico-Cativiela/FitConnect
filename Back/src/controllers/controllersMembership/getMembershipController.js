@@ -12,6 +12,7 @@ const getMembershipController = async (filter) => {
            },  
        })
     }
+
     return  memberships;
 };
 
