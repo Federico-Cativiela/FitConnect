@@ -36,7 +36,7 @@ model Activity {
   schedule String
   type_activity String
   rating String 
-
+  state Boolean @default(true)
   memberships MembershipOnActivity[]
 }
 
