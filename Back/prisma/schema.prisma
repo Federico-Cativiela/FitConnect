@@ -21,6 +21,7 @@ model User {
   expire_date DateTime @default(now())
   rol Boolean
   userStatus Boolean
+  status Boolean @default(true)
 
   membership  Membership  @relation(fields: [membershipId], references: [idMembership])
   membershipId   Int
