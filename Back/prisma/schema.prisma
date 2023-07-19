@@ -46,6 +46,7 @@ model Membership {
   levelMembership String 
   price Float
   duration Int
+  planId String @default("No tiene planId")
   user User[]
   paystore Paystore[]
 
