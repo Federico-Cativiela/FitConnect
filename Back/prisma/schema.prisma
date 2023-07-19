@@ -11,7 +11,8 @@ datasource db {
 }
 
 model User {
-  idUser Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+  uid String  
   name String 
   surname String
   email String @unique
@@ -20,6 +21,7 @@ model User {
   expire_date DateTime @default(now())
   rol Boolean
   userStatus Boolean
+  status Boolean @default(true)
 
   membership  Membership  @relation(fields: [membershipId], references: [idMembership])
   membershipId   Int
@@ -35,7 +37,7 @@ model Activity {
   schedule String
   type_activity String
   rating String 
-
+  state Boolean @default(true)
   memberships MembershipOnActivity[]
 }
 
@@ -44,6 +46,7 @@ model Membership {
   levelMembership String 
   price Float
   duration Int
+  planId String @default("No tiene planId")
   user User[]
   paystore Paystore[]
 
@@ -59,7 +62,7 @@ model Paystore {
   
   extraActivities PaystoreOnExtraActivity[]
 
-  user  User  @relation(fields: [userId], references: [idUser])
+  user  User  @relation(fields: [userId], references: [id])
   userId   Int
   
   membership  Membership  @relation(fields: [membershipId], references: [idMembership])
@@ -100,7 +103,7 @@ model PaystoreOnExtraActivity {
 }
 
 model UserOnExtraActivity {
-  user User @relation(fields: [userId], references: [idUser])
+  user User @relation(fields: [userId], references: [id])
   userId Int
   
   extraActivity ExtraActivity @relation(fields: [extraActivityId], references: [idExtraAct])
