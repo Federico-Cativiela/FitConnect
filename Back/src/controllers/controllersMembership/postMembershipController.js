@@ -1,17 +1,37 @@
 const {prisma} = require('../../db.js')
+const { Stripe } = require("stripe");
 
-const postMembershipController = async (levelMembership,price,duration  ) => {
+const stripe = new Stripe("sk_test_51NVc5JFVLHg8mbgAT7j3cU78uPv2ivnKUf30qOTMdS65zMcIOw1i24TGZq3NEq9Iz7cAw8J28mIi8I1d6Iu65a8s00Bl8unN39");
+
+const postMembershipController = async (amount, interval, name) => {
+
     
-    const newMembership = await prisma.membership.create({
+    const duration = interval === "month"?31:365
+
+    const membership = await stripe.plans.create({
+        amount: amount,
+        currency: 'usd',
+        interval: interval,
+        product: {
+            name: name
+        }
+    });
+
+    console.log(membership)
+    
+    
+    const membershipDb = await prisma.membership.create({
         data:{
-            levelMembership: levelMembership,
-            price: price,
+            planId: membership.id, 
+            levelMembership: name,
+            price: amount,
             duration: duration,
         }
     })
-    return newMembership;
+    
+    return membershipDb
 };
-
+ 
 module.exports = {
     postMembershipController
 }

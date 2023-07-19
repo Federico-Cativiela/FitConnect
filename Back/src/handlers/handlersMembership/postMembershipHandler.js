@@ -2,8 +2,8 @@ const { postMembershipController } = require("../../controllers/controllersMembe
 
 const postMembership = async (req, res) => {
     try {
-        const {levelMembership, price,  duration} = req.body;
-        const newMembership = await postMembershipController(levelMembership, price,duration)
+        const {amount, interval, name} = req.body;
+        const newMembership = await postMembershipController(amount, interval, name)
         res.status(200).json(newMembership);    
     } catch (error) {
         res.status(400).json({ error: error.message });
