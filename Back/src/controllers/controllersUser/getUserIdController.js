@@ -19,6 +19,7 @@ const getUserId = async (req, res) => {
         }
       })
     }
+    console.log(userFound);
     res.json(userFound);
   } catch (error) {
     res.status(400).json({ error: error.message });

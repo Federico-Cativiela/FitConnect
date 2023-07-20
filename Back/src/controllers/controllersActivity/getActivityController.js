@@ -14,6 +14,9 @@ const getActivityController = async (filter, order) => {
                         }
                     }
                 },
+                include:{
+                    memberships: true
+                },
                 orderBy : { name:"desc"}
             })
         }else{
@@ -40,7 +43,7 @@ const getActivityController = async (filter, order) => {
         }
     }
 
-    //Agregar arreglo con las membresias asociadas a las actividades.
+/*     //Agregar arreglo con las membresias asociadas a las actividades.
     for (let i=0 ;i<activities.length;i++){
         let levelMembershipsArr= [];
     //peticion de membresias relacionadas por cada actividad (usando idAct)
@@ -59,7 +62,7 @@ const getActivityController = async (filter, order) => {
         }
         const memberships = [...new Set(levelMembershipsArr)]
         activities[i].levelsMemberships = memberships;
-    }
+    } */
 
     return  activities;
 };
