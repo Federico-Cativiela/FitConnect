@@ -6,6 +6,7 @@ const postMembership = async (req, res) => {
         const newMembership = await postMembershipController(amount, interval, name)
         res.status(200).json(newMembership);    
     } catch (error) {
+        console.log(error)
         res.status(400).json({ error: error.message });
     }
 };

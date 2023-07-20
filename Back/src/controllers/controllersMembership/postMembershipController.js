@@ -6,30 +6,28 @@ const stripe = new Stripe("sk_test_51NVc5JFVLHg8mbgAT7j3cU78uPv2ivnKUf30qOTMdS65
 const postMembershipController = async (amount, interval, name) => {
 
     
-    const duration = interval === "month"?31:365
+    const duration = interval === "month" ? 31 : 365
 
-    const membership = await stripe.plans.create({
+    const membershipStripe = await stripe.plans.create({
         amount: amount,
         currency: 'usd',
         interval: interval,
         product: {
             name: name
         }
-    });
+    });   
+    
+    // const membershipDb = await prisma.membership.create({
+    //     data:{
+    //         levelMembership: name,
+    //         price: amount,
+    //         duration: duration,
+    //         planId: membershipStripe.id, 
+    //     }
+    // })
+    
 
-    console.log(membership)
-    
-    
-    const membershipDb = await prisma.membership.create({
-        data:{
-            planId: membership.id, 
-            levelMembership: name,
-            price: amount,
-            duration: duration,
-        }
-    })
-    
-    return membershipDb
+    return membershipStripe
 };
  
 module.exports = {
