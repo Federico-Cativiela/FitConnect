@@ -17,15 +17,14 @@ const postMembershipController = async (amount, interval, name) => {
         }
     });   
     
-    // const membershipDb = await prisma.membership.create({
-    //     data:{
-    //         levelMembership: name,
-    //         price: amount,
-    //         duration: duration,
-    //         planId: membershipStripe.id, 
-    //     }
-    // })
-    
+    const membershipDb = await prisma.membership.create({
+        data:{
+            levelMembership: name,
+            price: amount,
+            duration: duration,
+            planId: membershipStripe.id, 
+        }
+    })
 
     return membershipStripe
 };

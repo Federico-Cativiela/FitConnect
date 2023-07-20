@@ -9,7 +9,8 @@
     "mercadopago": "^1.5.16",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
-    "pg-hstore": "^2.3.4"
+    "pg-hstore": "^2.3.4",
+    "stripe": "^12.13.0"
   },
   "name": "back",
   "version": "1.0.0",
