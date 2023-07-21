@@ -12,7 +12,6 @@ const postExtra = async (req, res) => {
         type_activity: type_activity,
         rating: rating,
         description:description,
-        state:state,
         price: price
       }
     });
