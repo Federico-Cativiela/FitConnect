@@ -4,7 +4,6 @@ const postExtra = async (req, res) => {
   try {
     const { image, name, schedule, type_activity, rating, description, price } =
       req.body;
-
     const newExtra = await prisma.extraActivity.create({
       data: {
         image: image,
@@ -13,7 +12,7 @@ const postExtra = async (req, res) => {
         type_activity: type_activity,
         rating: rating,
         description: description,
-        price: price,
+        price: Number(price),
       },
     });
 
