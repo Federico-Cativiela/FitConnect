@@ -36,7 +36,8 @@ model Activity {
   name String 
   schedule String
   type_activity String
-  rating String 
+  rating String
+  description String @default("no tiene descripcion")
   state Boolean @default(true)
   memberships MembershipOnActivity[]
 }
@@ -76,6 +77,8 @@ model ExtraActivity {
   schedule String
   type_activity String
   rating String
+  description String @default("no tiene descripcion")
+  state Boolean @default(true)
   price Float
   
   paystores PaystoreOnExtraActivity[]

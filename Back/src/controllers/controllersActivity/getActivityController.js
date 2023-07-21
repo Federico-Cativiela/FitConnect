@@ -15,7 +15,11 @@ const getActivityController = async (filter, order) => {
                     }
                 },
                 include:{
-                    memberships: true
+                    memberships:{
+                        select:{
+                            membershipId:true,
+                        }
+                    }
                 },
                 orderBy : { name:"desc"}
             })
@@ -28,22 +32,43 @@ const getActivityController = async (filter, order) => {
                         }
                     }
                 },
+                include:{
+                    memberships:{
+                        select:{
+                            membershipId:true,
+                        }
+                    }
+                },
                 orderBy : { name:"asc"}
             })
         }
     }else{
         if (order==="za") {
             activities = await prisma.activity.findMany({
+                include:{
+                    memberships:{
+                        select:{
+                            membershipId:true,
+                        }
+                    }
+                },
                 orderBy : { name:"desc"}
             })
         }else{
             activities = await prisma.activity.findMany({
+                include:{
+                    memberships:{
+                        select:{
+                            membershipId:true,
+                        }
+                    }
+                },
                 orderBy : { name:"asc"}
             })
         }
     }
 
-/*     //Agregar arreglo con las membresias asociadas a las actividades.
+    //Agregar arreglo con las membresias asociadas a las actividades.
     for (let i=0 ;i<activities.length;i++){
         let levelMembershipsArr= [];
     //peticion de membresias relacionadas por cada actividad (usando idAct)
@@ -62,7 +87,7 @@ const getActivityController = async (filter, order) => {
         }
         const memberships = [...new Set(levelMembershipsArr)]
         activities[i].levelsMemberships = memberships;
-    } */
+    }
 
     return  activities;
 };
