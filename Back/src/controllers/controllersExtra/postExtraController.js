@@ -2,7 +2,7 @@ const { prisma } = require('../../db.js');
 
 const postExtra = async (req, res) => {
   try {
-    const { image,name, schedule, type_activity, rating, price } = req.body;
+    const { image,name, schedule, type_activity, rating, description,state,price } = req.body;
 
     const newExtra = await prisma.extraActivity.create({
       data: {
@@ -11,6 +11,8 @@ const postExtra = async (req, res) => {
         schedule: schedule,
         type_activity: type_activity,
         rating: rating,
+        description:description,
+        state:state,
         price: price
       }
     });

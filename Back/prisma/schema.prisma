@@ -77,6 +77,8 @@ model ExtraActivity {
   schedule String
   type_activity String
   rating String
+  description String @default("no tiene descripcion")
+  state Boolean @default(true)
   price Float
   
   paystores PaystoreOnExtraActivity[]
