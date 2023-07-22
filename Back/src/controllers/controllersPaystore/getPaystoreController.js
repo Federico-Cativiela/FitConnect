@@ -24,7 +24,7 @@ const getPaystorePlanId = async (req, res) => {
         },
       ],
       mode: 'subscription',
-      success_url: 'http://localhost:3001/paystore/success',
+      success_url: 'http://localhost:5173/success',
       cancel_url: 'http://localhost:3001/paystore/cancel',
     })
 
