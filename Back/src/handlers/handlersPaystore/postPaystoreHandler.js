@@ -1,4 +1,5 @@
 const {postPaystoreController} = require("../../controllers/controllersPaystore/postPaystoreController")
+const { postUser } = require("../handlersUser/postUserHandler")
 const { default: Stripe } = require('stripe');
 const {prisma} = require ('../../db.js');
 const { text } = require("express");
@@ -7,11 +8,16 @@ const keyPublic = "pk_test_51NVc5JFVLHg8mbgAH2S74Dm10Es7W1ALmkKBw04eAsXbDvM1fj4Q
 
 const postPaystore = async (req, res) => {
     const {data} = req.body;
+    const paymentInfo = data.object
     try {
-        const newPayment = await postPaystoreController(data)        
+        const newUser = await postUser(paymentInfo)
+        const { id } = newUser; 
+        const newPayment = await postPaystoreController(paymentInfo, id)
+        console.log("asi quedaria la nueva compra");
+        console.log(newPayment);
         res.status(200).send(newPayment);
     } catch (error) {
-        //console.error("Error al procesar el evento del webhook:", error);
+        console.error(error);
         res.status(400).send(`Webhook Error: ${error.message}`);
     }
 };

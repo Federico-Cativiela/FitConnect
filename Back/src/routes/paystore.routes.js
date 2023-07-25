@@ -13,6 +13,6 @@ paystoreRouter.post("/", postPaystore);
 paystoreRouter.put("/paystore/:id", putPaystore)
 paystoreRouter.get("/success", getSucces);
 paystoreRouter.get("/cancel", (req, res) => (res.json("CANCEL")))
-paystoreRouter.get("/:id", getPaystorePlanId)
+paystoreRouter.get("/", getPaystorePlanId)
 
 module.exports = paystoreRouter;
