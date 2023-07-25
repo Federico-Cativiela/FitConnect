@@ -48,6 +48,7 @@ model Membership {
   price Float
   duration Int
   planId String @default("No tiene planId")
+  status Boolean @default(true)
   user User[]
   paystore Paystore[]
 
@@ -56,18 +57,18 @@ model Membership {
   
 model Paystore {
   idPayment Int @id @default(autoincrement())
-  idMembership Int 
   priceTotal Float
   status_payment  String
-  idUser Int
+  invoice String 
+  date DateTime @default(now())
   
-  extraActivities PaystoreOnExtraActivity[]
-
   user  User  @relation(fields: [userId], references: [id])
   userId   Int
-  
-  membership  Membership  @relation(fields: [membershipId], references: [idMembership])
-  membershipId   Int
+
+  extraActivities PaystoreOnExtraActivity[]
+
+  membership  Membership?  @relation(fields: [membershipId], references: [idMembership])
+  membershipId   Int?
 }
 
 model ExtraActivity {
