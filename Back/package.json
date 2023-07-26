@@ -21,7 +21,7 @@
     "prisma": "^4.16.2"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon -L index.js",
+    "start": "NODE_ENV=development nodemon -L index.js || nodemon -L index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
