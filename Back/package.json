@@ -17,7 +17,6 @@
   "version": "1.0.0",
   "main": "/Back/index.js",
   "devDependencies": {
-    "nodemon": "^2.0.22",
     "prisma": "^4.16.2"
   },
   "scripts": {
