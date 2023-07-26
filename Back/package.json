@@ -20,7 +20,7 @@
     "prisma": "^4.16.2"
   },
   "scripts": {
-    "start": "nodemon -L --omit=dev",
+    "start": "nodemon -index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
