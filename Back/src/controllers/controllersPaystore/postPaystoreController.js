@@ -1,5 +1,6 @@
 const {prisma} = require('../../db.js')
 const { default: Stripe } = require('stripe');
+const postMailerSucces = require('../controllersMailer/mailerUserController.js');
 const stripe = new Stripe("sk_test_51NVc5JFVLHg8mbgAT7j3cU78uPv2ivnKUf30qOTMdS65zMcIOw1i24TGZq3NEq9Iz7cAw8J28mIi8I1d6Iu65a8s00Bl8unN39")
 
 const postPaystoreController = async (paymentInfo, id) => {
@@ -16,6 +17,8 @@ const postPaystoreController = async (paymentInfo, id) => {
             membershipId: Number(idMembership)
         }
     })
+
+    const sendEmail = await postMailerSucces(newPayment,paymentInfo)
 
     return newPayment;
 };

@@ -6,6 +6,7 @@ const { putPaystore } = require('../handlers/handlersPaystore/putPaystoreHandler
 const { getPaystorePlanId } = require('../controllers/controllersPaystore/getPaystoreController');
 const { getSucces } = require('../controllers/controllersPaystore/getSucces');
 const getLastPaystore = require('../handlers/handlersPaystore/getLastPaystore');
+const postMailerSucces = require('../controllers/controllersMailer/mailerUserController')
 const paystoreRouter = Router();
 
 //paystoreRouter.get("/", )
@@ -13,6 +14,7 @@ const paystoreRouter = Router();
 paystoreRouter.post("/", postPaystore);
 paystoreRouter.put("/paystore/:id", putPaystore)
 paystoreRouter.get("/success", getSucces);
+paystoreRouter.post("/success", postMailerSucces);
 paystoreRouter.get("/last/:idUser", getLastPaystore);
 paystoreRouter.get("/cancel", (req, res) => (res.json("CANCEL")))
 paystoreRouter.get("/", getPaystorePlanId)
