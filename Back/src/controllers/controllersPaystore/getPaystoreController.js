@@ -33,8 +33,8 @@ const getPaystorePlanId = async (req, res) => {
       },
       client_reference_id: uid,
       customer_email: email,
-      success_url: 'http://localhost:5173/success',
-      cancel_url: 'http://localhost:3001/paystore/cancel',
+      success_url: 'https://fit-connect-two.vercel.app/success',
+      cancel_url: 'https://fit-connect-two.vercel.app',
     })
 
     res.json(session)
