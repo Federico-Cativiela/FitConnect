@@ -4,7 +4,7 @@ const {prisma} = require ('../../db.js');
 const stripe = new Stripe("sk_test_51NVc5JFVLHg8mbgAT7j3cU78uPv2ivnKUf30qOTMdS65zMcIOw1i24TGZq3NEq9Iz7cAw8J28mIi8I1d6Iu65a8s00Bl8unN39")
 
 const getPaystorePlanId = async (req, res) => {
-  const { idMembership, uid, email, name, surname, password } = req.query
+  const { idMembership, uid, email, name, surname, password, put } = req.query
   const idMemb = Number(idMembership)
   try {
     const membership = await prisma.membership.findUnique({
@@ -28,7 +28,8 @@ const getPaystorePlanId = async (req, res) => {
         idMembership:idMemb,
         name:name,
         surname:surname,
-        password:password
+        password:password,
+        actualizar: put
       },
       client_reference_id: uid,
       customer_email: email,
