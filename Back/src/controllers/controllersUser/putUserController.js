@@ -18,7 +18,6 @@ const putUserController = async (id, data) => {
       });
     }
 
-  
   return put;
 };
 

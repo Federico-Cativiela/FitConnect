@@ -1,11 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const activitieRouter = require("./routes/index.js");
-const router = require("./routes/index.js");
-const membershipRouter = require("./routes/membership.routes.js");
-const userRouter = require("./routes/users.routes.js");
-const paystoreRouter = require("./routes/paystore.routes.js");
-const extraRouter = require("./routes/extra.routes.js");
+const routesPf = require("./routes");
 const cors = require("cors");
 const server = express();
 
@@ -26,13 +21,7 @@ server.use((req, res, next) => {
 });
 
 //  Routes
-
-server.use(router);
-server.use("/activitie", activitieRouter);
-server.use("/membership", membershipRouter);
-server.use("/user", userRouter);
-server.use("/paystore", paystoreRouter);
-server.use("/extra", extraRouter);
+server.use(routesPf);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
