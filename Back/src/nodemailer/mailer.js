@@ -7,8 +7,8 @@ const transporter = nodemailer.createTransport({
     url:"https://fitconnect-r5gr.onrender.com/",
     service: 'gmail',
     auth: {
-    user: process.env.EMAIL, // Reemplaza con tu dirección de correo electrónico
-    pass: process.env.EMAIL_PASSWORD, // Reemplaza con tu contraseña de Gmail
+    user: "infofitconnect@gmail.com", // Reemplaza con tu dirección de correo electrónico
+    pass: "fitconnect", // Reemplaza con tu contraseña de Gmail
   },
 });
 
