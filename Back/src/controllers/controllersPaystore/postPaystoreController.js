@@ -19,6 +19,7 @@ const postPaystoreController = async (paymentInfo, id) => {
     })
 
     const sendEmail = await postMailerSucces(newPayment,paymentInfo)
+     console.log(sendEmail)
 
     return newPayment;
 };

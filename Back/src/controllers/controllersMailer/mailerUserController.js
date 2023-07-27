@@ -1,14 +1,14 @@
 const transporter = require ("../../nodemailer/mailer")
 const nodemailer = require("nodemailer")
 
-const postMailerSucces = function(newPayment,paymentInfo){
-    transporter.sendMail({
+const postMailerSucces = async function(newPayment,paymentInfo){
+    const email = await transporter.sendMail({
         from: "infofitconnect@gmail.com",
         to:paymentInfo.email,
         subject:"Tu pago fue recibido exitosamente ,atentamente FitConnect",
         body:newPayment.invoice
     })
-
+    return email
     
 }
 
