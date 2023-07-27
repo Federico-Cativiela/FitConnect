@@ -4,11 +4,11 @@ const nodemailer = require('nodemailer');
 // Configurar transporte para enviar correos electrónicos
 const transporter = nodemailer.createTransport({
     host:"smtp.gmail.com",
-    url:"https://fitconnect-r5gr.onrender.com/",
-    service: 'gmail',
+    PORT:465,
+    secure:true,
     auth: {
     user: "infofitconnect@gmail.com", // Reemplaza con tu dirección de correo electrónico
-    pass: "fitconnect", // Reemplaza con tu contraseña de Gmail
+    pass: "zkbujsmrcwqtqpwi", // Reemplaza con tu contraseña de Gmail
   },
 });
 
