@@ -5,12 +5,12 @@ const userRouter = require('./users.routes.js');
 const paystoreRouter = require('./paystore.routes.js');
 const extraRouter = require('./extra.routes.js');
 
-const router = Router();
+const routesPf = Router();
 
-router.use('/', activitieRouter);
-router.use('/', membershipRouter);
-router.use('/', userRouter);
-router.use('/', paystoreRouter);
-router.use('/', extraRouter)
+routesPf.use("/activitie", activitieRouter);
+routesPf.use("/membership", membershipRouter);
+routesPf.use("/user", userRouter);
+routesPf.use("/paystore", paystoreRouter);
+routesPf.use("/extra", extraRouter);
 
-module.exports = router;
+module.exports = routesPf;

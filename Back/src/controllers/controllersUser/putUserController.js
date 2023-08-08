@@ -1,17 +1,26 @@
 const { prisma } = require("../../db");
 
 const putUserController = async (id, data) => {
-    
-    const put = await prisma.user.update({
+  let put;
+    if (isNaN(id)) {
+      put = await prisma.user.update({
         where: {
-          idUser: Number(id)
+          email: data.email,
         },
-        data: data
-      })
+        data: data,
+      });
+    }else{
+      put = await prisma.user.update({
+        where: {
+          id: Number(id)
+        },
+        data: data,
+      });
+    }
 
-      return put;
+  return put;
 };
 
 module.exports = {
-    putUserController
-}
+  putUserController,
+};

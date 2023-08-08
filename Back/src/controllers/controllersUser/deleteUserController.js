@@ -1,13 +1,19 @@
 const { prisma } = require("../../db");
 
 const deleteUserController = async (id) => {
-    
-    const deleted = await prisma.user.delete({
+    if (isNaN(id)) {
+      const deleted = await prisma.user.delete({
         where: {
-          idUser: Number(id)
+          uid: id
         },
+      })     
+    }else{
+      const deleted = await prisma.user.delete({
+          where: {
+            id: id
+          },
       })
-      
+    }
       return deleted;
 };
 
